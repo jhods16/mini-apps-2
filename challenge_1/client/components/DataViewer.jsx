@@ -5,7 +5,15 @@ const DataViewer = (props) => {
   return (
     <div>
       <h3>Data Viewer</h3>
-      {props.data.map((entry, i) => <DataEntry key={i} date={entry.date} description={entry.description}/>)}
+      <table>
+        <tbody>
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+          </tr>
+          {props.data.map((entry, i) => <DataEntry key={i} date={entry.date} description={entry.description}/>)}
+        </tbody>
+      </table>
     </div>
   )
 }
