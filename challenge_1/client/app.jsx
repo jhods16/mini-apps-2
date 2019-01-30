@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Search from './components/Search.jsx';
 import DataViewer from './components/DataViewer.jsx';
 import ReactPaginate from 'react-paginate';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class App extends React.Component {
     this.state = {
       keyword: '',
       data: [],
-      page: 0,
+      page: 1,
       pageCount: 0,
     }
     this.handleSearchInput = this.handleSearchInput.bind(this);
@@ -25,17 +26,28 @@ class App extends React.Component {
   }
 
   searchByKeyword(e) {
-    e.preventDefault();
-    fetch(`/events?q=${this.state.keyword}&_page=1`)
-      .then(response => response.json())
-      .then(data => this.setState({ data }))
+    e ? e.preventDefault() : null;
+
+    axios.get(`/events`, {
+      params: {
+        q: this.state.keyword,
+        _page: this.state.page,
+      }
+    })
+      .then(response => {
+        this.setState({ 
+          data: response.data,
+          pageCount: Number(response.headers['x-total-count']), 
+        })
+      })
       .catch(err => console.error(err));
   }
 
-  handlePageClick() {
-    console.log('click')
+  handlePageClick(e) {
     this.setState({
-      page: 1
+      page: e.selected + 1  
+    }, () => {
+      this.searchByKeyword();
     })
   }
   
