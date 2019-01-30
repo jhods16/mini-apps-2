@@ -1,0 +1,30 @@
+body {
+  font-family: monospace;
+}
+
+table {
+  text-align: left;
+}
+
+td, th {
+  padding-left: 20px;
+  padding-bottom: 5px;
+}
+
+li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+a {
+  margin: 10px;
+}
+
+button, input {
+  font-family: monospace;
+}
+
+a:hover, button:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
