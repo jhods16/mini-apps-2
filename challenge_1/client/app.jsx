@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import Search from './components/Search.jsx';
 import DataViewer from './components/DataViewer.jsx';
 import ReactPaginate from 'react-paginate';
-import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,16 +28,11 @@ class App extends React.Component {
   searchByKeyword(e) {
     e ? e.preventDefault() : null;
 
-    axios.get(`/events`, {
-      params: {
-        q: this.state.keyword,
-        _page: this.state.page,
-      }
-    })
+    axios.get(`/events?q=${this.state.keyword}&_page=${this.state.page}`)
       .then(response => {
         this.setState({ 
           data: response.data,
-          pageCount: Number(response.headers['x-total-count']), 
+          pageCount: Number(response.headers['x-total-count']) / 10, 
         })
       })
       .catch(err => console.error(err));
