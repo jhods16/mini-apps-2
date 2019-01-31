@@ -13,7 +13,8 @@ const DataViewer = (props) => {
           </tr>
           {props.data.map((entry, i) => 
             <DataEntry 
-              key={i} 
+              key={i}
+              id={entry.id} 
               date={entry.date} 
               description={entry.description} 
               handleEdit={props.handleEdit}
