@@ -1,7 +1,8 @@
 let fs = require('fs');
+let path = require('path');
 
 let addId = () => {
-  fs.readFile('/Users/jessicahodson/hack-reactor/w11/hrsf108-mini-apps-2/challenge_1/data/db.json', (err, results) => {
+  fs.readFile(path.join(__dirname, 'data/db.json'), (err, results) => {
     if (err) {
       return console.error(err)
     } 
@@ -11,7 +12,7 @@ let addId = () => {
     for (let i = 0; i < json.events.length; i++) {
       json.events[i].id = i;
     }
-    fs.writeFile('/Users/jessicahodson/hack-reactor/w11/hrsf108-mini-apps-2/challenge_1/data/db.json', JSON.stringify(json), (err) => {
+    fs.writeFile(path.join(__dirname, 'data/db.json'), JSON.stringify(json), (err) => {
       if (err) {
         return console.error(err)
       }
