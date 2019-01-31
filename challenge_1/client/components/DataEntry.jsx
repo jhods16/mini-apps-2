@@ -7,8 +7,8 @@ const DataEntry = (props) => {
   //  3. the button text will read 'Save' rather than 'Edit'
   return (
     <tr>
-      <td contentEditable={props.editing} onInput={props.handleInput.bind(this)}>{props.date}</td>
-      <td contentEditable={props.editing}>{props.description}</td>
+      <td contentEditable={props.editing} onInput={props.handleInput.bind(this, 'date')}>{props.date}</td>
+      <td contentEditable={props.editing} onInput={props.handleInput.bind(this, 'description')}>{props.description}</td>
       <td>
         <button onClick={props.editing ? props.handleSave.bind(this) : props.handleEdit.bind(this, props)}>
           {props.editing ? 'Save' : 'Edit'}

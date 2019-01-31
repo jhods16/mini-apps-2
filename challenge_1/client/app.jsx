@@ -14,7 +14,7 @@ class App extends React.Component {
       page: 1,
       pageCount: 0,
       editing: {},
-      edit: '',
+      edit: {},
     }
     this.handleSearchInput = this.handleSearchInput.bind(this);
     this.searchByKeyword = this.searchByKeyword.bind(this);
@@ -59,14 +59,19 @@ class App extends React.Component {
     })
   }
 
-  handleInput(e) {
+  handleInput(property, e) {
     this.setState({
-      edit: e.currentTarget.innerText
+      edit: {
+        [property]: e.currentTarget.innerText
+      }
     })
   }
 
   handleSave() {
-    console.log(this.state.edit)
+    axios.patch(`/events/${this.state.editing.id}`, this.state.edit)
+      .then(result => console.log(result))
+      .catch(err => console.error(err));
+    console.log('editing:', this.state.editing, 'edit:', this.state.edit)
   }
   
   render() {
