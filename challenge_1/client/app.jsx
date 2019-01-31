@@ -69,9 +69,7 @@ class App extends React.Component {
 
   handleSave() {
     axios.patch(`/events/${this.state.editing.id}`, this.state.edit)
-      .then(result => console.log(result))
       .catch(err => console.error(err));
-    console.log('editing:', this.state.editing, 'edit:', this.state.edit)
   }
   
   render() {
