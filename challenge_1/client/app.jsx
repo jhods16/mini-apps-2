@@ -13,10 +13,15 @@ class App extends React.Component {
       data: [],
       page: 1,
       pageCount: 0,
+      editing: {},
+      edit: '',
     }
     this.handleSearchInput = this.handleSearchInput.bind(this);
     this.searchByKeyword = this.searchByKeyword.bind(this);
     this.handlePageClick = this.handlePageClick.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   handleSearchInput(e) {
@@ -26,6 +31,8 @@ class App extends React.Component {
   }
 
   searchByKeyword(e) {
+    // if there is an event related to this function call, prevent the default,
+    // else do nothing (it is called from handlePageClick as well)
     e ? e.preventDefault() : null;
 
     axios.get(`/events?q=${this.state.keyword}&_page=${this.state.page}`)
@@ -45,25 +52,44 @@ class App extends React.Component {
       this.searchByKeyword();
     })
   }
+
+  handleEdit(entry) {
+    this.setState({
+      editing: entry,
+    })
+  }
+
+  handleInput(e) {
+    this.setState({
+      edit: e.currentTarget.innerText
+    })
+  }
+
+  handleSave() {
+    console.log(this.state.edit)
+  }
   
   render() {
     return (
       <div>
         <h2>Historical Data Viewer</h2>
         <Search handleSearchInput={this.handleSearchInput} searchByKeyword={this.searchByKeyword}/>
-        <DataViewer data={this.state.data}/>
+        <DataViewer 
+          keyword={this.state.keyword} 
+          data={this.state.data} 
+          editing={this.state.editing}
+          handleEdit={this.handleEdit} 
+          handleInput={this.handleInput} 
+          handleSave={this.handleSave}
+        />
         <ReactPaginate 
           previousLabel={'previous'}
           nextLabel={'next'}
           breakLabel={'...'}
-          breakClassName={'break-me'}
           pageCount={this.state.pageCount}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
           onPageChange={this.handlePageClick}
-          containerClassName={'pagination'}
-          subContainerClassName={'pages pagination'}
-          activeClassName={'active'}
         />
       </div>
     )
