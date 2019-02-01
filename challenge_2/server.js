@@ -9,7 +9,9 @@ app.use(express.static(path.join(__dirname, './public')));
 app.use(bodyParser.json());
 
 app.get('/data', (req, res) => {
-  axios.get('https://api.coindesk.com/v1/bpi/historical/close.json')
+  axios.get('https://api.coindesk.com/v1/bpi/historical/close.json', {
+    params: req.query
+  })
     .then(results => {
       res.send(results.data.bpi);
     })
