@@ -6,24 +6,24 @@ import chartOptions from '../chart.config.js';
 
 class BPIChart extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       chart: {}
-    }
+    };
     this.buildChart = this.buildChart.bind(this);
   }
 
   componentDidMount() {
-    this.buildChart()
+    this.buildChart();
   }
 
   buildChart() {
-    let ctx = ReactDOM.findDOMNode(this.refs.bpichart) 
+    let ctx = ReactDOM.findDOMNode(this.refs.bpichart); 
     let bpiChart = new Chart(ctx, chartOptions);
     
     this.setState({
       chart: bpiChart
-    })
+    });
   }
 
   componentDidUpdate() {

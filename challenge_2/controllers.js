@@ -5,9 +5,9 @@ let redisClient = redis.createClient();
 const getCachedData = (req, res) => {
   return redisClient.get(JSON.stringify(req.query), (err, results) => {
     if (!results) {
-      getCoinDeskData(req, res)
+      getCoinDeskData(req, res);
     } else if (err) {
-      res.send(`Could not get data for query: ${req.query}`)
+      res.send(`Could not get data for query: ${req.query}`);
     } else {
       res.send(results);
     }

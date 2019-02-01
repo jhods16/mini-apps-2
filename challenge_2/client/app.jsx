@@ -39,7 +39,7 @@ class App extends React.Component {
 
     this.setState({
       [name]: value  
-    })
+    });
   }
 
   handleSubmit(e) {
@@ -64,4 +64,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'));
