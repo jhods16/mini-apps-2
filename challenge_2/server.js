@@ -15,7 +15,7 @@ app.get('/data', (req, res) => {
     .then(results => {
       res.send(results.data.bpi);
     })
-    .catch(err => console.error(err));
+    .catch(err => res.send(err));
 })
 
 app.listen(port, () => {
