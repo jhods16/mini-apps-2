@@ -2,18 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import BPIChart from './components/Chart.jsx';
-import chartOptions from './chart.config.js';
 import DatePicker from './components/DatePicker.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // options: chartOptions,
       labels: [],
       data: [],
       start: '',
-      end: '',     
+      end: '',
     }
     this.updateChart = this.updateChart.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -21,7 +19,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.updateChart({});
+    this.updateChart();
   }
   
   updateChart(query) {
