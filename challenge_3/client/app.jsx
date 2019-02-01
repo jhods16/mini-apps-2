@@ -28,7 +28,7 @@ class App extends React.Component {
         frameCount: this.state.frameCount += 1,
         rollNum: 1,
         rollScore: this.state.rollScore += Number(e.target.innerText),
-        totalScore: this.state.totalScore+= Number(e.target.innerText),
+        totalScore: this.state.totalScore += Number(e.target.innerText),
       })      
     }
   }
