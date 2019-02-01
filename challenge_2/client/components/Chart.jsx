@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Chart from 'chart.js';
 import chartOptions from '../chart.config.js';
 
-
 class BPIChart extends React.Component {
   constructor(props) {
     super(props);
