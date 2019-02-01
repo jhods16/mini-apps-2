@@ -7,7 +7,7 @@ module.exports = {
       data: [],
       backgroundColor: 'rgba(0, 0, 0, 0.0)',
       borderColor: 'purple',
-      borderWidth: 1
+      borderWidth: 2
     }]
   },
   options: {
